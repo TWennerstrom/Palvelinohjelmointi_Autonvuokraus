@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<title>Autonvuokraus</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css"rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+
+<body>
+	<div class="col-md-4">
+	<h1>Automme:</h1>
+	<h3 th:inline="text">Login name: [[${#httpServletRequest.remoteUser}]]</h3>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Kirjaudu ulos" class="btn btn-primary"/>
+	</form>
+	</div>
+	
+	<table class="table table-striped">
+		<tr>
+			<th>RekNro</th>
+			<th>Vuosimalli</th>
+			<th>Mittarilukema</th>
+			<th>Merkki</th>
+			<th>Malli</th>
+			<th>Hinta €/tunti</th>
+		</tr>
+		<tr th:each = "car : ${cars}">
+			<td th:text="${car.reknro}"></td>
+			<td th:text="${car.year}"></td>
+			<td th:text="${car.readout}"></td>
+			<td th:text="${car.carmodel.manufacturer}"></td>
+			<td th:text="${car.carmodel.model}"></td>
+			<td th:text="${#numbers.formatDecimal({car.price}, 0, 2)}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${car.id})}" class="btn btn-danger">Delete</a></td> 		
+ 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${car.id})}" class="btn btn-success">Edit</a></td>
+ 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/rentcar/{id}(id=${car.id})}" class="btn btn-info">Vuokraa</a></td>
+ 		</tr>
+	</table>
+	<br><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/add}">Lisää auto</a>   
+	<br><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/addcarmodel}">Lisää malli & valmistaja</a>
+	<br><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/up}">Lisää kuva</a>
+	<br><a th:href="@{/home}">Kotisivulle</a>
+</body>
+
+</html>

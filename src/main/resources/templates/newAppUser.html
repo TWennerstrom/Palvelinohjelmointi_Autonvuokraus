@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Autovuokraus</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css"rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+	<h1>Täytä uuden käyttäjän tiedot</h1>
+     <div>
+		<form th:object="${newAppUser}" th:action="@{/saveNewAppUser}" action="#" method="post" class="form-horizontal">
+			<table>
+				<tr>
+					<td><label for="username" class="col-sm-2 control-label">Käyttäjänimi </label></td>
+					<td><input type="text" class="form-control" id="username" th:field="*{username}"/></td>
+					<td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</td>
+				</tr>
+				<tr>
+					<td><label for="password" class="col-sm-2 control-label">Salasana </label></td>
+					<td><input type="password" class="form-control" id="password" th:field="*{password}"/></td>
+					<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+				</tr>
+				<tr>
+					<td><label for="passwordCheck" class="col-sm-2 control-label">Toista salasana </label></td>
+					<td><input type="password" class="form-control" id="passwordCheck" th:field="*{passwordCheck}" /></td>
+					<td th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password Match Error</td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Tallenna"></input></td>
+				</tr>
+			</table>	
+		</form>
+	</div>
+</div>
+</body>
+</html>

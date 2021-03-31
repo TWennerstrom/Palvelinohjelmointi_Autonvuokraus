@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<Title>Autovuokraus</Title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Muokkaa autoa</h1>
+	<div>
+		<form th:object="${car}" th:action="@{/save}" action="#" method="post" class="form-horizontal">
+		<table>
+			<tr>
+				<td><label for="id"></label></td>
+				<td><input type="hidden" th:field="*{id}" readonly="readonly"  class="form-control"/></td>
+			</tr>
+			<tr>
+				<td><label for="reknro" class="col-sm-2 control-label">RekNro</label></td>
+				<td><input type="text" class="form-control" id="reknro" th:field="*{reknro}" /></td>
+			</tr>
+			<tr>
+				<td><label for="year" class="col-sm-2 control-label">Vuosimalli</label></td>
+				<td><input type="text" class="form-control" id="year" th:field="*{year}" /></td>
+			</tr>
+			<tr>
+				<td><label for="readout" class="col-sm-2 control-label">Mittarilukema</label></td>
+				<td><input type="text" class="form-control" id="readout" th:field="*{readout}" /></td>
+			</tr>
+			<tr>
+				<td><label for="carmodellist" class="col-sm-2 control-label">Malli</label></td>
+					<td><select id="carmodellist" th:field="*{carmodel}" class="form-control">
+	       				<option th:each="carmodel: ${carmodels}" th:value="${carmodel.id}" th:text="${carmodel.toString}"></option>
+	    			</select></td>
+			</tr>
+			<tr>
+				<td><label for="price" class="col-sm-2 control-label">Hinta</label></td>
+				<td><input type="text" class="form-control" id="price" th:field="*{price}" /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" class="btn btn-success" value="Save"></input></td>
+			</tr>
+		</table>
+		</form>
+	</div>
+</body>
+</html>

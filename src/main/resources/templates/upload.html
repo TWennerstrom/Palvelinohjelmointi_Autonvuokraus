@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<Title>Autonvuokraus</Title>
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Tallenna kuva</h1>
+	<form method="POST" action="/upload" enctype="multipart/form-data" class="form-horizontal">
+		<input type="file" name="file" /><br>
+		<input type="submit" value="Tallenna" />
+	</form>
+</body>
+</html>

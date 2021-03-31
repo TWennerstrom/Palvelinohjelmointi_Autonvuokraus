@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Autonvuokraus</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+
+<body>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Kirjaudu ulos" class="btn btn-primary"/>
+	</form>
+	
+	<h1>Tervetuloa autonvuokraukseen</h1>
+    <img src="/images/paku.jpg" width="900" height="635" th:src="@{/images/paku.jpg}" />
+    
+    <h5>Alla olevat toiminteet vaativat sisäänkirjautumisen</h5>
+	<a th:href="@{/carlist}">Näytä	autot</a><br>
+	<a th:href="@{/create}">Luo uusi sovelluksen käyttäjä </a>
+</body>
+
+</html>

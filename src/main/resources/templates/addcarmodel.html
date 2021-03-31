@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<Title>Autovuokraus</Title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+
+</head>
+<body>
+	<h1>Lisää malli & valmistaja</h1>
+
+	<form th:object="${carmodel}" th:action="@{/savemodel}" action="#" method="post" class="form-horizontal">
+		<table>
+			<tr>
+				<td><label for="model" class="col-sm-2 control-label">Malli</label></td>
+				<td><input type="text" class="form-control" id="model" th:field="*{model}" /></td>
+				<td th:if="${#fields.hasErrors('model')}" th:errors="*{model}">Model error</td>
+			</tr>
+			<tr>
+				<td><label for="manufacturer" class="col-sm-2 control-label">Valmistaja</label></td>
+				<td><input type="text" class="form-control" id="manufacturer" th:field="*{manufacturer}" /></td>
+				<td th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}">Manufacturer error</td>
+			</tr>
+			<tr>
+				<td><input type="submit" class="btn btn-success" value="Save"></input></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>
